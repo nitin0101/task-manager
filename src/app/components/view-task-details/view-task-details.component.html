@@ -9,8 +9,29 @@
     </div>
     <div class="column2">
       <label>STATUS</label>
-      <p>{{ task.status }}</p>
-
+      <!-- <p>{{ task.status }}</p> -->
+      <p>
+        <select matNativeControl (change)="onStatusChange($event, task.id)">
+          <option
+            value="open"
+            [attr.selected]="task.status === 'open' ? true : null"
+          >
+            Open
+          </option>
+          <option
+            value="in-progress"
+            [attr.selected]="task.status === 'in-progress' ? true : null"
+          >
+            In-progress
+          </option>
+          <option
+            value="completed"
+            [attr.selected]="task.status === 'completed' ? true : null"
+          >
+            Completed
+          </option>
+        </select>
+      </p>
       <label>DUE DATE</label>
       <p>{{ task.dueDate }}</p>
 
@@ -31,7 +52,9 @@
 
       <mat-divider></mat-divider>
       <p class="date-time">Created: {{ task.createdOn | date : "short" }}</p>
-      <p class="date-time">Last updated: {{ task.updatedOn | date : "short" }}</p>
+      <p class="date-time">
+        Last updated: {{ task.updatedOn | date : "short" }}
+      </p>
     </div>
   </div>
   <button

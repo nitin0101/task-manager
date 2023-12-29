@@ -15,7 +15,7 @@ export class AddEditTaskModalComponent {
     priority: new FormControl('', [Validators.required]),
   });
 
-  title: string = 'Add Task';
+  header: string = 'Add Task';
   constructor(
     public dialogRef: MatDialogRef<AddEditTaskModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -25,7 +25,7 @@ export class AddEditTaskModalComponent {
       this.taskForm.get('description')?.patchValue(data.description);
       this.taskForm.get('dueDate')?.patchValue(data.dueDate);
       this.taskForm.get('priority')?.patchValue(data.priority);
-      this.title = data.title;
+      this.header = data.title;
     }
   }
 

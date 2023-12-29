@@ -7,6 +7,7 @@ import * as TaskActions from '../../store/actions/task.actions';
 import { Router } from '@angular/router';
 import { AddEditTaskModalComponent } from '../add-edit-task-modal/add-edit-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
   selector: 'app-task-list',
@@ -39,7 +40,16 @@ export class TaskListComponent {
   }
 
   ngOnInit() {
+    this.commonService.showSpinner();
+    setTimeout(() => {
     this.store.dispatch(TaskActions.loadTasks());
+      this.commonService.hideSpinner();
+    }, 1000);
+  }
+
+  onStatusChange(event: any, taskId: number) {
+    const taskStatus = event.target.value as string;
+    this.store.dispatch(TaskActions.changeStatus({ taskStatus, taskId }));
   }
 
   openAddTaskDialog(): void {
@@ -55,7 +65,7 @@ export class TaskListComponent {
   editTaskDialog(id: any): void {
     const taskToEdit = this.tasks.find((el) => el.id === id);
     const dialogRef = this.dialog.open(AddEditTaskModalComponent, {
-      data: { ...taskToEdit, title: 'Update Task' },
+      data: { ...taskToEdit, header: 'Update Task' },
       disableClose: true,
     });
 
@@ -70,6 +80,7 @@ export class TaskListComponent {
   }
 
   addTask(taskData: Task): void {
+    this.commonService.showSpinner();
     const task = {
       ...taskData,
       id: this.tasks.length + 1,
@@ -78,18 +89,33 @@ export class TaskListComponent {
       status: 'open',
     };
 
-    this.store.dispatch(TaskActions.addTask({ task }));
+    setTimeout(() => {
+      this.store.dispatch(TaskActions.addTask({ task }));
+      this.commonService.hideSpinner();
+    }, 1000);
   }
 
   updateTask(taskData: Task): void {
+    this.commonService.showSpinner();
     const task = {
       ...taskData,
       updatedOn: new Date().toISOString(),
     };
-    this.store.dispatch(TaskActions.updateTask({ task }));
+    setTimeout(() => {
+      this.store.dispatch(TaskActions.updateTask({ task }));
+      this.commonService.hideSpinner();
+    }, 1000);
   }
 
   deleteTask(taskId: number): void {
-    this.store.dispatch(TaskActions.deleteTask({ taskId }));
+    const dialogRef = this.dialog.open(DeleteConfirmationModalComponent, {
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'delete') {
+        this.store.dispatch(TaskActions.deleteTask({ taskId }));
+      }
+    });
   }
 }
