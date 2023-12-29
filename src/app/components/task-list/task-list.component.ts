@@ -41,8 +41,10 @@ export class TaskListComponent {
 
   ngOnInit() {
     this.commonService.showSpinner();
-    this.store.dispatch(TaskActions.loadTasks());
-    this.commonService.hideSpinner();
+    setTimeout(() => {
+      this.store.dispatch(TaskActions.loadTasks());
+      this.commonService.hideSpinner();
+    }, 0);
   }
 
   onStatusChange(event: any, taskId: number) {
