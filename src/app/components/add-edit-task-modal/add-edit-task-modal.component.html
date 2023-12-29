@@ -1,0 +1,45 @@
+<div class="modal-container">
+  <h1>{{title}}</h1>
+  <p>Add/update task title, task description, due date, priority.</p>
+
+  <div class="add-form" [formGroup]="taskForm">
+    <mat-form-field>
+      <mat-label>Task Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option value="high">High</mat-option>
+        <mat-option value="medium">Medium</mat-option>
+        <mat-option value="low">Low</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Task Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Choose a due date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div mat-dialog-actions class="add-buttons">
+      <button mat-stroked-button (click)="cancel()">Cancel</button>
+      <button
+        mat-stroked-button
+        [disabled]="!taskForm.valid"
+        (click)="submit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+import { Component } from '@angular/core';
+import { CommonServiceService } from '../../services/common-service.service';
+import { Task } from '../../models/model';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as TaskActions from '../../store/actions/task.actions';
+import { Router } from '@angular/router';
+import { AddEditTaskModalComponent } from '../add-edit-task-modal/add-edit-task-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrl: './task-list.component.css',
+})
+export class TaskListComponent {
+  tasks: Task[] = [];
+  displayedColumns: string[] = [
+    'id',
+    'title',
+    'dueDate',
+    'priority',
+    'status',
+    'actions',
+  ];
+
+  tasks2$: Observable<Task[]>;
+  constructor(
+    private commonService: CommonServiceService,
+    private store: Store<any>,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
+    this.tasks2$ = this.store.pipe(select('tasks'));
+    this.tasks2$.subscribe((resp: any) => {
+      console.log('task list store>>', resp);
+      this.tasks = resp.tasks;
+    });
+  }
+
+  ngOnInit() {
+    this.store.dispatch(TaskActions.loadTasks());
+  }
+
+  openAddTaskDialog(): void {
+    const dialogRef = this.dialog.open(AddEditTaskModalComponent, {
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(({ task }) => {
+      this.addTask(task);
+    });
+  }
+
+  editTaskDialog(id: any): void {
+    const taskToEdit = this.tasks.find((el) => el.id === id);
+    const dialogRef = this.dialog.open(AddEditTaskModalComponent, {
+      data: {...taskToEdit,title:'Update Task'},
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe(({ task }) => {
+      console.log('updated task', task);
+      this.updateTask(task);
+    });
+  }
+
+  addTask(taskData: Task): void {
+    const task = {
+      ...taskData,
+      id: this.tasks.length + 1,
+      status: 'open',
+    };
+
+    this.store.dispatch(TaskActions.addTask({ task }));
+  }
+
+  updateTask(task: Task): void {
+    this.store.dispatch(TaskActions.updateTask({ task }));
+  }
+
+  deleteTask(taskId: number): void {
+    this.store.dispatch(TaskActions.deleteTask({ taskId }));
+  }
+}
