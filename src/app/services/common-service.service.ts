@@ -9,21 +9,21 @@ import * as TaskActions from '../store/actions/task.actions';
   providedIn: 'root',
 })
 export class CommonServiceService {
-  private apiUrl = 'assets/mock-response/task-list-response.json';
+  private basApiUrl = 'http://localhost:3000';
   spinnerSubject$ = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private store: Store<any>) {}
 
-  getTasks(): Observable<TaskListResponse> {
-    return this.http.get<TaskListResponse>(this.apiUrl);
+  getTasks(): Observable<Task[]> {
+    return this.http.get<Task[]>(this.basApiUrl + '/tasks');
   }
 
   addTask(task: Task): void {
     this.store.dispatch(TaskActions.addTask({ task }));
   }
-  deleteTask(taskId: number): void {
-    //call delete API
-    this.store.dispatch(TaskActions.deleteTask({ taskId }));
+
+  deleteTask(taskId: number): Observable<any> {
+    return this.http.delete<Task[]>(this.basApiUrl + '/tasks/' + taskId);
   }
 
   showSpinner() {

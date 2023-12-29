@@ -41,10 +41,8 @@ export class TaskListComponent {
 
   ngOnInit() {
     this.commonService.showSpinner();
-    setTimeout(() => {
     this.store.dispatch(TaskActions.loadTasks());
-      this.commonService.hideSpinner();
-    }, 1000);
+    this.commonService.hideSpinner();
   }
 
   onStatusChange(event: any, taskId: number) {
@@ -114,7 +112,13 @@ export class TaskListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result == 'delete') {
-        this.store.dispatch(TaskActions.deleteTask({ taskId }));
+        this.commonService.showSpinner();
+        this.commonService.deleteTask(taskId).subscribe({
+          next: () => {
+            this.store.dispatch(TaskActions.deleteTask({ taskId }));
+            this.commonService.hideSpinner();
+          },
+        });
       }
     });
   }
