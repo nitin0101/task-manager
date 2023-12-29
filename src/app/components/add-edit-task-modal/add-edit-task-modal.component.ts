@@ -34,11 +34,22 @@ export class AddEditTaskModalComponent {
   }
 
   submit(): void {
+    const date = this.taskForm.get('dueDate')?.value;
+    const originalDate = new Date(date as any);
+    const formattedDate = `${originalDate.getUTCFullYear()}-${(
+      originalDate.getUTCMonth() + 1
+    )
+      .toString()
+      .padStart(2, '0')}-${originalDate
+      .getUTCDate()
+      .toString()
+      .padStart(2, '0')}`;
+
     const task = {
       title: this.taskForm.get('title')?.value,
       description: this.taskForm.get('description')?.value,
       priority: this.taskForm.get('priority')?.value,
-      dueDate: this.taskForm.get('dueDate')?.value,
+      dueDate: formattedDate,
     };
 
     this.dialogRef.close({ task: { ...this.data, ...task } });

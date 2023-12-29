@@ -1,0 +1,10 @@
+.container {
+    overflow: auto;
+    padding: 1rem;
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+    font-size: 16px;
+    margin-right: 2px;
+    margin-top: 20px;
+}

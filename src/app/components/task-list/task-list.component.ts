@@ -55,7 +55,7 @@ export class TaskListComponent {
   editTaskDialog(id: any): void {
     const taskToEdit = this.tasks.find((el) => el.id === id);
     const dialogRef = this.dialog.open(AddEditTaskModalComponent, {
-      data: {...taskToEdit,title:'Update Task'},
+      data: { ...taskToEdit, title: 'Update Task' },
       disableClose: true,
     });
 
@@ -65,17 +65,27 @@ export class TaskListComponent {
     });
   }
 
+  viewTask(id: any) {
+    this.router.navigate(['./view-task/' + id]);
+  }
+
   addTask(taskData: Task): void {
     const task = {
       ...taskData,
       id: this.tasks.length + 1,
+      createdOn: new Date().toISOString(),
+      updatedOn: new Date().toISOString(),
       status: 'open',
     };
 
     this.store.dispatch(TaskActions.addTask({ task }));
   }
 
-  updateTask(task: Task): void {
+  updateTask(taskData: Task): void {
+    const task = {
+      ...taskData,
+      updatedOn: new Date().toISOString(),
+    };
     this.store.dispatch(TaskActions.updateTask({ task }));
   }
 

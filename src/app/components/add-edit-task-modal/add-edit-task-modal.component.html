@@ -1,5 +1,5 @@
 <div class="modal-container">
-  <h1>{{title}}</h1>
+  <h1>{{ title }}</h1>
   <p>Add/update task title, task description, due date, priority.</p>
 
   <div class="add-form" [formGroup]="taskForm">
@@ -34,8 +34,9 @@
     <div mat-dialog-actions class="add-buttons">
       <button mat-stroked-button (click)="cancel()">Cancel</button>
       <button
-        mat-stroked-button
         [disabled]="!taskForm.valid"
+        color="primary"
+        mat-raised-button
         (click)="submit()"
       >
         Submit
