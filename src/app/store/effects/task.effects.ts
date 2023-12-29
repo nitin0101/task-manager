@@ -13,7 +13,7 @@ export class TaskEffects {
       mergeMap(() =>
         this.taskService
           .getTasks()
-          .pipe(map((tasks) => TaskActions.loadTasksSuccess(tasks)))
+          .pipe(map((tasks) => TaskActions.loadTasksSuccess({ tasks: tasks })))
       )
     )
   );
