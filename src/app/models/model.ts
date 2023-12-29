@@ -3,7 +3,7 @@ export interface TaskListResponse {
 }
 
 export interface Task {
-  id: number; // You can include an identifier if your tasks have unique IDs
+  id: number;
   title: string;
   description: string;
   priority: string;
