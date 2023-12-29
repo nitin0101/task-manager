@@ -21,13 +21,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddEditTaskModalComponent } from './components/add-edit-task-modal/add-edit-task-modal.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskDetailsComponent } from './components/view-task-details/view-task-details.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent],
+  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent],
   imports: [
+    FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     MatNativeDateModule,
@@ -43,6 +47,7 @@ import { DeleteConfirmationModalComponent } from './components/delete-confirmati
     MatDividerModule,
     MatButtonModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     StoreModule.forRoot({ tasks: taskReducer }),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25 }), // Configure the dev tool

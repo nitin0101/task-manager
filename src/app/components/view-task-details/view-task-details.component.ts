@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Task } from '../../models/model';
+import * as TaskActions from '../../store/actions/task.actions';
 
 @Component({
   selector: 'app-view-task-details',
@@ -35,5 +36,10 @@ export class ViewTaskDetailsComponent {
 
   done(){
     this.router.navigate(['/']);
+  }
+
+  onStatusChange(event: any, taskId: number) {
+    const taskStatus = event.target.value as string;
+    this.store.dispatch(TaskActions.changeStatus({ taskStatus, taskId }));
   }
 }

@@ -27,12 +27,12 @@ export const taskReducer = createReducer(
   on(TaskActions.deleteTask, (state, { taskId }) => ({
     ...state,
     tasks: state.tasks.filter((t) => t.id !== taskId),
-  }))
+  })),
 
-  //   on(TaskActions.markTaskAsCompleted, (state, { taskId }) => ({
-  //     ...state,
-  //     tasks: state.tasks.map((t) =>
-  //       t.id === taskId ? { ...t, status: 'completed' } : t
-  //     ),
-  //   }))
+  on(TaskActions.changeStatus, (state, { taskStatus, taskId }) => ({
+    ...state,
+    tasks: state.tasks.map((t) =>
+      t.id === taskId ? { ...t, status: taskStatus } : t
+    ),
+  }))
 );
