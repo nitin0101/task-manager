@@ -7,6 +7,7 @@ import * as TaskActions from '../../store/actions/task.actions';
 import { Router } from '@angular/router';
 import { AddEditTaskModalComponent } from '../add-edit-task-modal/add-edit-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
   selector: 'app-task-list',
@@ -90,6 +91,14 @@ export class TaskListComponent {
   }
 
   deleteTask(taskId: number): void {
-    this.store.dispatch(TaskActions.deleteTask({ taskId }));
+    const dialogRef = this.dialog.open(DeleteConfirmationModalComponent, {
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == 'delete') {
+        this.store.dispatch(TaskActions.deleteTask({ taskId }));
+      }
+    });
   }
 }

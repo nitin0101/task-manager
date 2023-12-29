@@ -24,8 +24,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskDetailsComponent } from './components/view-task-details/view-task-details.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent],
+  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
