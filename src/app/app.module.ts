@@ -26,7 +26,7 @@ import { ViewTaskDetailsComponent } from './components/view-task-details/view-ta
 import {MatChipsModule} from '@angular/material/chips';
 import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent],
