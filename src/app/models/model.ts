@@ -8,5 +8,7 @@ export interface Task {
   description: string;
   priority: string;
   status: string;
-  dueDate: Date;
+  dueDate: string;
+  createdOn: string;
+  updatedOn: string;
 }

@@ -1,0 +1,45 @@
+<div class="view-container">
+  <p>#{{ task?.id }}</p>
+
+  <div class="details-container" *ngIf="task">
+    <div class="column1">
+      <h1>{{ task?.title }}</h1>
+      <b>Description:</b>
+      <p>{{ task?.description }}</p>
+    </div>
+    <div class="column2">
+      <label>STATUS</label>
+      <p>{{ task.status }}</p>
+
+      <label>DUE DATE</label>
+      <p>{{ task.dueDate }}</p>
+
+      <label>PRIORITY</label>
+
+      <p>
+        <mat-chip
+          ><img
+            matChipAvatar
+            src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+            alt="Photo of a Shiba Inu"
+          />{{ task.priority }}</mat-chip
+        >
+      </p>
+
+      <label>ID</label>
+      <p>{{ task.id }}</p>
+
+      <mat-divider></mat-divider>
+      <p class="date-time">Created: {{ task.createdOn | date : "short" }}</p>
+      <p class="date-time">Last updated: {{ task.updatedOn | date : "short" }}</p>
+    </div>
+  </div>
+  <button
+    class="done-button"
+    color="primary"
+    mat-raised-button
+    (click)="done()"
+  >
+    Done, Go back to listing
+  </button>
+</div>

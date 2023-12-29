@@ -22,9 +22,10 @@ import { AddEditTaskModalComponent } from './components/add-edit-task-modal/add-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ViewTaskDetailsComponent } from './components/view-task-details/view-task-details.component';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent],
+  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
@@ -35,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatIconModule,
     MatInputModule,
+    MatChipsModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatDividerModule,

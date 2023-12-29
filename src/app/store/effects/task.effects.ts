@@ -11,17 +11,12 @@ export class TaskEffects {
     this.actions$.pipe(
       ofType(TaskActions.loadTasks),
       mergeMap(() =>
-        this.taskService.getTasks().pipe(
-          map(
-            (tasks) => TaskActions.loadTasksSuccess(tasks)
-          )
-        )
+        this.taskService
+          .getTasks()
+          .pipe(map((tasks) => TaskActions.loadTasksSuccess(tasks)))
       )
     )
-);
-
-  // Additional effects for add, update, delete, and other actions
-  // ...
+  );
 
   constructor(
     private actions$: Actions,
