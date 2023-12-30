@@ -18,8 +18,12 @@ export class CommonServiceService {
     return this.http.get<Task[]>(this.basApiUrl + '/tasks');
   }
 
-  addTask(task: Task): void {
-    this.store.dispatch(TaskActions.addTask({ task }));
+  addTask(task: Task): Observable<any> {
+    return this.http.post<Task>(this.basApiUrl + '/tasks', task);
+  }
+
+  updateTask(task: any, taskId: any): Observable<any> {
+    return this.http.patch<Task[]>(this.basApiUrl + '/tasks/' + taskId, task);
   }
 
   deleteTask(taskId: number): Observable<any> {

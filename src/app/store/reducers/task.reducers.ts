@@ -28,13 +28,4 @@ export const taskReducer = createReducer(
     ...state,
     tasks: state.tasks.filter((t) => t.id !== taskId),
   })),
-
-  on(TaskActions.changeStatus, (state, { taskStatus, taskId }) => ({
-    ...state,
-    tasks: state.tasks.map((t) =>
-      t.id === taskId
-        ? { ...t, status: taskStatus, updatedOn: new Date().toISOString() }
-        : t
-    ),
-  }))
 );

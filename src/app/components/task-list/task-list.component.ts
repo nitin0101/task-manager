@@ -76,11 +76,6 @@ export class TaskListComponent {
     }
   }
 
-  onStatusChange(event: any, taskId: number) {
-    const taskStatus = event.target.value as string;
-    this.store.dispatch(TaskActions.changeStatus({ taskStatus, taskId }));
-  }
-
   openAddTaskDialog(): void {
     const dialogRef = this.dialog.open(AddEditTaskModalComponent, {
       disableClose: true,
@@ -111,16 +106,21 @@ export class TaskListComponent {
     this.commonService.showSpinner();
     const task = {
       ...taskData,
-      id: 123100+this.tasks.length + 1,
+      id: 123100 + this.tasks.length + 1,
       createdOn: new Date().toISOString(),
       updatedOn: new Date().toISOString(),
       status: 'open',
     };
 
-    setTimeout(() => {
-      this.store.dispatch(TaskActions.addTask({ task }));
-      this.commonService.hideSpinner();
-    }, 1000);
+    this.commonService.addTask(task).subscribe({
+      next: () => {
+        this.store.dispatch(TaskActions.addTask({ task }));
+        this.commonService.hideSpinner();
+      },
+      error: () => {
+        this.commonService.hideSpinner();
+      },
+    });
   }
 
   updateTask(taskData: Task): void {
@@ -129,10 +129,30 @@ export class TaskListComponent {
       ...taskData,
       updatedOn: new Date().toISOString(),
     };
-    setTimeout(() => {
-      this.store.dispatch(TaskActions.updateTask({ task }));
-      this.commonService.hideSpinner();
-    }, 1000);
+
+    this.commonService.updateTask(task, task.id).subscribe({
+      next: () => {
+        this.store.dispatch(TaskActions.updateTask({ task }));
+        this.commonService.hideSpinner();
+      },
+      error: () => {
+        this.commonService.hideSpinner();
+      },
+    });
+  }
+
+  onStatusChange(event: any, taskId: number) {
+    this.commonService.showSpinner();
+    const taskStatus = event.target.value as string;
+    this.commonService.updateTask({ status: taskStatus }, taskId).subscribe({
+      next: (task) => {
+        this.store.dispatch(TaskActions.updateTask({ task }));
+        this.commonService.hideSpinner();
+      },
+      error: () => {
+        this.commonService.hideSpinner();
+      },
+    });
   }
 
   deleteTask(taskId: number): void {
@@ -146,6 +166,9 @@ export class TaskListComponent {
         this.commonService.deleteTask(taskId).subscribe({
           next: () => {
             this.store.dispatch(TaskActions.deleteTask({ taskId }));
+            this.commonService.hideSpinner();
+          },
+          error: () => {
             this.commonService.hideSpinner();
           },
         });

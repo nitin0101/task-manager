@@ -18,8 +18,3 @@ export const deleteTask = createAction(
   '[Task] Delete Task',
   props<{ taskId: number }>()
 );
-
-export const changeStatus = createAction(
-  '[Task] Change task status',
-  props<{ taskStatus: string; taskId: number }>()
-);
