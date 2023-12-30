@@ -1,16 +1,35 @@
 <div class="container">
   <div class="table-header-section">
-    <div>
+    <div *ngIf="tasks.length > 0">
       <input
         class="search-input-class"
         [(ngModel)]="searchText"
         placeholder="Type task title to search"
       />
+      <div class="sorting-options">
+        <button
+          mat-stroked-button
+          (click)="sortData('priority')"
+          color="primary"
+        >
+          Sort by Priority
+        </button>
+        <button
+          mat-stroked-button
+          (click)="sortData('dueDate')"
+          color="primary"
+        >
+          Sort by Due Date
+        </button>
+      </div>
     </div>
-    <button mat-raised-button (click)="openAddTaskDialog()">ADD TASK</button>
+    <button mat-raised-button (click)="openAddTaskDialog()" color="primary">
+      ADD TASK
+    </button>
   </div>
 
   <table
+    *ngIf="tasks.length > 0"
     mat-table
     [dataSource]="tasks | search : searchText"
     class="mat-elevation-z8"
@@ -21,7 +40,7 @@
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Task Title</th>
       <td mat-cell *matCellDef="let element">{{ element.title }}</td>
     </ng-container>
 
@@ -73,4 +92,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <div *ngIf="tasks.length == 0">
+    <p class="no-task-message">No task to show here. Please add task by clicking on ADD TASK button.</p>
+  </div>
 </div>

@@ -16,6 +16,7 @@ import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/d
 })
 export class TaskListComponent {
   tasks: Task[] = [];
+  selectedSortOption: string | undefined;
   displayedColumns: string[] = [
     'id',
     'title',
@@ -25,7 +26,7 @@ export class TaskListComponent {
     'actions',
   ];
 
-  searchText= ''
+  searchText = '';
   taskStoreResponse$: Observable<Task[]>;
   constructor(
     private commonService: CommonServiceService,
@@ -35,7 +36,7 @@ export class TaskListComponent {
   ) {
     this.taskStoreResponse$ = this.store.pipe(select('tasks'));
     this.taskStoreResponse$.subscribe((resp: any) => {
-      this.tasks = resp.tasks;
+      this.tasks = [...resp.tasks];
     });
   }
 
@@ -44,6 +45,19 @@ export class TaskListComponent {
       this.store.dispatch(TaskActions.loadTasks());
       this.commonService.hideSpinner();
     }, 0);
+  }
+
+  sortData(sortOption: string): void {
+    this.selectedSortOption = sortOption;
+    if (sortOption == 'priority') {
+      this.tasks = [
+        ...this.tasks.sort((a, b) => a.priority.localeCompare(b.priority)),
+      ];
+    } else if (sortOption == 'dueDate') {
+      this.tasks = this.tasks.sort(
+        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+      );
+    }
   }
 
   onStatusChange(event: any, taskId: number) {
@@ -76,7 +90,7 @@ export class TaskListComponent {
   viewTask(id: any) {
     this.router.navigate(['./view-task/' + id]);
   }
-  
+
   addTask(taskData: Task): void {
     this.commonService.showSpinner();
     const task = {

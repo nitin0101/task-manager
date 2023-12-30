@@ -8,7 +8,7 @@
 
 .column1 {
   min-width: 65%;
-  border-right: 1px solid #dadada;
+  border-right: 1px solid #f1f0f0;
 }
 
 h1 {
@@ -31,4 +31,9 @@ p {
 
 .date-time {
   margin: 5px 0;
+}
+
+select {
+  padding: 2px;
+  font-size: 12px;
 }

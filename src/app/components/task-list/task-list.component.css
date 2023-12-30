@@ -9,6 +9,11 @@ mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color
     margin-top: 20px;
 }
 
+select {
+    padding: 2px;
+    font-size: 12px;
+}
+
 .table-header-section {
     display: flex;
     flex-direction: row;
@@ -21,3 +26,11 @@ mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color
     padding: 8px;
     font-size: 1rem;
 }
+
+.sorting-options {
+    margin-top: 16px;
+  }
+  
+  .sorting-options button {
+    margin-right: 8px;
+  }

@@ -4,15 +4,7 @@
   </button>
   <span>Task Manager</span>
 </mat-toolbar>
-<div class="navbar">
-  <div class="tab" [routerLink]="['./tasks']" routerLinkActive="active">
-    Tasks List
-  </div>
-  <div class="tab" [routerLink]="['./board']" routerLinkActive="active">
-    Task Board
-  </div>
-</div>
-
+<app-tab-menu></app-tab-menu>
 <mat-divider></mat-divider>
 <div class="root-conatiner-class">
   <router-outlet></router-outlet>
