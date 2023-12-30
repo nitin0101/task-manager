@@ -39,6 +39,7 @@ export class TaskBoardComponent {
       columns: [
         {
           name: 'open',
+          color:'accent',
           id: '101',
           tasks: this.tasks.filter((task) => task.status === 'open'),
         },

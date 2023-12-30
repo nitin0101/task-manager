@@ -1,6 +1,16 @@
 {
   "tasks": [
     {
+      "id": 1,
+      "title": "Complete Angular Project",
+      "description": "Build a comprehensive task management application using Angular. This project involves implementing various features, such as task creation, editing, and drag-and-drop functionality. Ensure a seamless user experience with a clean and intuitive user interface.",
+      "priority": "high",
+      "status": "in-progress",
+      "dueDate": "2023-12-31",
+      "createdOn": "2023-12-01T10:00:00Z",
+      "updatedOn": "2023-12-01T15:30:00Z"
+    },
+    {
       "id": 34541,
       "title": "Complete Angular Project",
       "description": "Build a task management application using Angular.",

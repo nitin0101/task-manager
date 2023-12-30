@@ -1,13 +1,10 @@
 <div class="board-container">
-  <!-- <div class="board-header-section">
-    <input class="search-input-class" placeholder="Type task title to search" />
-  </div> -->
-
   <div class="root">
     <div class="board-columns">
       <div class="board-column" *ngFor="let column of board.columns">
         <div class="column-title">
-          {{ column.name }}
+          <h3>{{ column.name }}</h3>
+          <mat-divider></mat-divider>
         </div>
         <div
           class="tasks-container"
@@ -18,10 +15,9 @@
           (cdkDropListDropped)="drop($event)"
         >
           <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-            <p>{{ item.title }}</p>
-            <p>{{ item.priority }}</p>
-            <p>{{ item.dueDate }}</p>
-            <p>{{ item.status }}</p>
+            <span>{{ item.title }}</span>
+            <span>{{ item.dueDate }}</span>
+            <span>{{ item.priority }}</span>
           </div>
         </div>
       </div>

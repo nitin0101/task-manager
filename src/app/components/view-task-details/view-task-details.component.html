@@ -4,12 +4,14 @@
   <div class="details-container" *ngIf="task">
     <div class="column1">
       <h1>{{ task?.title }}</h1>
+      <div class="divider">
+        <mat-divider></mat-divider>
+      </div>
       <b>Description:</b>
       <p>{{ task?.description }}</p>
     </div>
     <div class="column2">
       <label>STATUS</label>
-      <!-- <p>{{ task.status }}</p> -->
       <p>
         <select matNativeControl (change)="onStatusChange($event, task.id)">
           <option
