@@ -23,15 +23,26 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewTaskDetailsComponent } from './components/view-task-details/view-task-details.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { TaskBoardComponent } from './components/task-board/task-board.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent, TaskBoardComponent],
+  declarations: [
+    AppComponent,
+    TaskListComponent,
+    AddEditTaskModalComponent,
+    ViewTaskDetailsComponent,
+    DeleteConfirmationModalComponent,
+    SpinnerComponent,
+    TaskBoardComponent,
+    DashboardComponent,
+  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -42,6 +53,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     MatTableModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     MatIconModule,
     MatInputModule,
     MatChipsModule,

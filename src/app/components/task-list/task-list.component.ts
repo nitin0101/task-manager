@@ -25,16 +25,15 @@ export class TaskListComponent {
     'actions',
   ];
 
-  tasks2$: Observable<Task[]>;
+  taskStoreResponse$: Observable<Task[]>;
   constructor(
     private commonService: CommonServiceService,
     private store: Store<any>,
     private router: Router,
     public dialog: MatDialog
   ) {
-    this.tasks2$ = this.store.pipe(select('tasks'));
-    this.tasks2$.subscribe((resp: any) => {
-      console.log('task list store>>', resp);
+    this.taskStoreResponse$ = this.store.pipe(select('tasks'));
+    this.taskStoreResponse$.subscribe((resp: any) => {
       this.tasks = resp.tasks;
     });
   }
@@ -69,7 +68,6 @@ export class TaskListComponent {
     });
 
     dialogRef.afterClosed().subscribe(({ task }) => {
-      console.log('updated task', task);
       this.updateTask(task);
     });
   }
@@ -77,7 +75,7 @@ export class TaskListComponent {
   viewTask(id: any) {
     this.router.navigate(['./view-task/' + id]);
   }
-
+  
   addTask(taskData: Task): void {
     this.commonService.showSpinner();
     const task = {
