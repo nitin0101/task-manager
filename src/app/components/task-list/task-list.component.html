@@ -1,9 +1,20 @@
 <div class="container">
-  <div>
+  <div class="table-header-section">
+    <div>
+      <input
+        class="search-input-class"
+        [(ngModel)]="searchText"
+        placeholder="Type task title to search"
+      />
+    </div>
     <button mat-raised-button (click)="openAddTaskDialog()">ADD TASK</button>
   </div>
 
-  <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+  <table
+    mat-table
+    [dataSource]="tasks | search : searchText"
+    class="mat-elevation-z8"
+  >
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Task ID</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>

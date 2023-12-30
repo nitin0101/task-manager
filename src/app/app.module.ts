@@ -31,6 +31,7 @@ import { TaskBoardComponent } from './components/task-board/task-board.component
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SearchPipe } from './shared/pipe/search.pipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     SpinnerComponent,
     TaskBoardComponent,
     DashboardComponent,
+    SearchPipe,
   ],
   imports: [
     FormsModule,

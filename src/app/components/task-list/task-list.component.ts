@@ -25,6 +25,7 @@ export class TaskListComponent {
     'actions',
   ];
 
+  searchText= ''
   taskStoreResponse$: Observable<Task[]>;
   constructor(
     private commonService: CommonServiceService,
