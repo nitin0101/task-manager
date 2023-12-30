@@ -1,3 +1,21 @@
+.board-container {
+  overflow: auto;
+  padding: 1rem;
+}
+
+.board-header-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.search-input-class{
+  padding: 8px;
+  font-size: 1rem;
+}
+
 .root {
   display: flex;
   flex-direction: column;
@@ -7,6 +25,7 @@
 .board-columns {
   display: flex;
   flex-grow: 1;
+  gap: 1rem;
 }
 
 .board-column {
@@ -16,7 +35,7 @@
   flex-basis: 0;
 
   max-width: 300px;
-  margin: 1rem;
+  
   padding: 25px;
 
   border-radius: 4px;

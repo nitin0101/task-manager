@@ -1,22 +1,28 @@
-<div class="root">
-  <div class="board-columns">
-    <div class="board-column" *ngFor="let column of board.columns">
-      <div class="column-title">
-        {{ column.name }}
-      </div>
-      <div
-        class="tasks-container"
-        id="{{ column.id }}"
-        [cdkDropListConnectedTo]="['101', '102', '103']"
-        cdkDropList
-        [cdkDropListData]="column.tasks"
-        (cdkDropListDropped)="drop($event)"
-      >
-        <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-          <p>{{ item.title }}</p>
-          <p>{{ item.priority }}</p>
-          <p>{{ item.dueDate }}</p>
-          <p>{{ item.status }}</p>
+<div class="board-container">
+  <!-- <div class="board-header-section">
+    <input class="search-input-class" placeholder="Type task title to search" />
+  </div> -->
+
+  <div class="root">
+    <div class="board-columns">
+      <div class="board-column" *ngFor="let column of board.columns">
+        <div class="column-title">
+          {{ column.name }}
+        </div>
+        <div
+          class="tasks-container"
+          id="{{ column.id }}"
+          [cdkDropListConnectedTo]="['101', '102', '103']"
+          cdkDropList
+          [cdkDropListData]="column.tasks"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="task" *ngFor="let item of column.tasks" cdkDrag>
+            <p>{{ item.title }}</p>
+            <p>{{ item.priority }}</p>
+            <p>{{ item.dueDate }}</p>
+            <p>{{ item.status }}</p>
+          </div>
         </div>
       </div>
     </div>
