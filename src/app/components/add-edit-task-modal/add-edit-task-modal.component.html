@@ -17,7 +17,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Task Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
+      <textarea matInput formControlName="description" matAutosizeMaxRows="10" rows="5"></textarea>
     </mat-form-field>
 
     <mat-form-field>
@@ -34,7 +34,7 @@
     <div mat-dialog-actions class="add-buttons">
       <button mat-stroked-button (click)="cancel()">Cancel</button>
       <button
-        [disabled]="!taskForm.valid"
+        [disabled]="!taskForm.valid || taskForm.pristine"
         color="primary"
         mat-raised-button
         (click)="submit()"

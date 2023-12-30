@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonServiceService } from '../../services/common-service.service';
 import { Task } from '../../models/model';
 import { Store, select } from '@ngrx/store';
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AddEditTaskModalComponent } from '../add-edit-task-modal/add-edit-task-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-task-list',
@@ -18,6 +19,7 @@ export class TaskListComponent {
   tasks: Task[] = [];
   selectedSortOption: string | undefined;
   displayedColumns: string[] = [
+    'counter',
     'id',
     'title',
     'dueDate',
@@ -27,7 +29,11 @@ export class TaskListComponent {
   ];
 
   searchText = '';
+  pageSize = 10; // Set the number of tasks per page
+  pageIndex = 0;
   taskStoreResponse$: Observable<Task[]>;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
   constructor(
     private commonService: CommonServiceService,
     private store: Store<any>,
@@ -45,6 +51,16 @@ export class TaskListComponent {
       this.store.dispatch(TaskActions.loadTasks());
       this.commonService.hideSpinner();
     }, 0);
+  }
+
+  ngAfterViewInit(): void {
+    this.paginator.page.subscribe((event: PageEvent) => {
+      this.pageIndex = event.pageIndex;
+    });
+  }
+
+  calculateSerialNumber(indexOnPage: number): number {
+    return this.pageIndex * this.pageSize + indexOnPage + 1;
   }
 
   sortData(sortOption: string): void {
@@ -95,7 +111,7 @@ export class TaskListComponent {
     this.commonService.showSpinner();
     const task = {
       ...taskData,
-      id: this.tasks.length + 1,
+      id: 123100+this.tasks.length + 1,
       createdOn: new Date().toISOString(),
       updatedOn: new Date().toISOString(),
       status: 'open',
