@@ -10,6 +10,7 @@ import { Task } from '../../models/model';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { CommonServiceService } from '../../services/common-service.service';
 @Component({
   selector: 'app-task-board',
   templateUrl: './task-board.component.html',
@@ -23,7 +24,8 @@ export class TaskBoardComponent {
   constructor(
     private store: Store<any>,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private commonService: CommonServiceService
   ) {
     this.taskStoreResponse$ = this.store.pipe(select('tasks'));
     this.taskStoreResponse$.subscribe((resp: any) => {
@@ -39,7 +41,7 @@ export class TaskBoardComponent {
       columns: [
         {
           name: 'open',
-          color:'accent',
+          color: 'accent',
           id: '101',
           tasks: this.tasks.filter((task) => task.status === 'open'),
         },
@@ -65,7 +67,7 @@ export class TaskBoardComponent {
         event.currentIndex
       );
     } else {
-       const movedItem = event.previousContainer.data[event.previousIndex];
+      const movedItem = event.previousContainer.data[event.previousIndex];
 
       const targetColumn = event.container.id;
 
@@ -88,7 +90,16 @@ export class TaskBoardComponent {
   }
 
   onStatusChange(status: any, taskId: number) {
+    this.commonService.showSpinner();
     const taskStatus = status;
-    this.store.dispatch(TaskActions.changeStatus({ taskStatus, taskId }));
+    this.commonService.updateTask({ status: taskStatus }, taskId).subscribe({
+      next: (task) => {
+        this.store.dispatch(TaskActions.updateTask({ task }));
+        this.commonService.hideSpinner();
+      },
+      error: () => {
+        this.commonService.hideSpinner();
+      },
+    });
   }
 }

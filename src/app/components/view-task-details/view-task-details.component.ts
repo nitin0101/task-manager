@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Task } from '../../models/model';
 import * as TaskActions from '../../store/actions/task.actions';
+import { CommonServiceService } from '../../services/common-service.service';
 
 @Component({
   selector: 'app-view-task-details',
@@ -16,6 +17,7 @@ export class ViewTaskDetailsComponent {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private commonService: CommonServiceService,
     private store: Store<any>
   ) {
     this.activatedRoute.params.subscribe((params) => {
@@ -34,12 +36,21 @@ export class ViewTaskDetailsComponent {
     }
   }
 
-  done(){
+  done() {
     this.router.navigate(['/']);
   }
 
   onStatusChange(event: any, taskId: number) {
+    this.commonService.showSpinner();
     const taskStatus = event.target.value as string;
-    this.store.dispatch(TaskActions.changeStatus({ taskStatus, taskId }));
+    this.commonService.updateTask({ status: taskStatus }, taskId).subscribe({
+      next: (task) => {
+        this.store.dispatch(TaskActions.updateTask({ task }));
+        this.commonService.hideSpinner();
+      },
+      error: () => {
+        this.commonService.hideSpinner();
+      },
+    });
   }
 }
