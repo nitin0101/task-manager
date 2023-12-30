@@ -27,9 +27,10 @@ import {MatChipsModule} from '@angular/material/chips';
 import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { TaskBoardComponent } from './components/task-board/task-board.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent],
+  declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent, TaskBoardComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

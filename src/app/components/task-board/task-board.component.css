@@ -1,0 +1,37 @@
+.task-board {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /* border: 1px solid black; */
+  padding: 1rem;
+  gap: 10px;
+}
+
+.open-col,
+.in-progress-col,
+.completed-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* border: 1px solid grey; */
+  padding: 1rem;
+  background-color: rgb(231, 229, 229);
+  height: 85vh;
+  width: -webkit-fill-available;
+  max-height: 1000px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px #c8c8c8 solid;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  width: 100%;
+}

@@ -9,7 +9,5 @@ import { CommonServiceService } from './services/common-service.service';
 export class AppComponent {
   title = 'task-manager';
   constructor(private commonService: CommonServiceService) {}
-  ngOnInit() {
-    this.commonService.showSpinner();
-  }
+  ngOnInit() {}
 }
