@@ -28,6 +28,7 @@ import { DeleteConfirmationModalComponent } from './components/delete-confirmati
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { TaskBoardComponent } from './components/task-board/task-board.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AppComponent, TaskListComponent, AddEditTaskModalComponent, ViewTaskDetailsComponent, DeleteConfirmationModalComponent, SpinnerComponent, TaskBoardComponent],
@@ -36,6 +37,7 @@ import { TaskBoardComponent } from './components/task-board/task-board.component
     ReactiveFormsModule,
     BrowserModule,
     MatNativeDateModule,
+    DragDropModule,
     AppRoutingModule,
     HttpClientModule,
     MatTableModule,
