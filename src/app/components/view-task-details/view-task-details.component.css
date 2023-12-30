@@ -7,8 +7,9 @@
 }
 
 .column1 {
-  min-width: 65%;
-  border-right: 1px solid #dadada;
+  max-width: 65%;
+  border-right: 1px solid #f1f0f0;
+  padding-right: 80px;
 }
 
 h1 {
@@ -31,4 +32,16 @@ p {
 
 .date-time {
   margin: 5px 0;
+}
+
+select {
+  padding: 2px;
+  font-size: 12px;
+}
+
+h1{
+  margin: 0;
+}
+.divider{
+  margin-bottom: 1rem;
 }

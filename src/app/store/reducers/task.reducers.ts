@@ -32,7 +32,9 @@ export const taskReducer = createReducer(
   on(TaskActions.changeStatus, (state, { taskStatus, taskId }) => ({
     ...state,
     tasks: state.tasks.map((t) =>
-      t.id === taskId ? { ...t, status: taskStatus } : t
+      t.id === taskId
+        ? { ...t, status: taskStatus, updatedOn: new Date().toISOString() }
+        : t
     ),
   }))
 );

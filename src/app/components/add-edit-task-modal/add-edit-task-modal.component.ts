@@ -25,7 +25,7 @@ export class AddEditTaskModalComponent {
       this.taskForm.get('description')?.patchValue(data.description);
       this.taskForm.get('dueDate')?.patchValue(data.dueDate);
       this.taskForm.get('priority')?.patchValue(data.priority);
-      this.header = data.title;
+      this.header = data.header;
     }
   }
 

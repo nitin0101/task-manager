@@ -8,3 +8,33 @@ mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color
     margin-right: 2px;
     margin-top: 20px;
 }
+
+select {
+    padding: 2px;
+    font-size: 12px;
+}
+
+.table-header-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.search-input-class{
+    padding: 8px;
+    font-size: 1rem;
+}
+
+.sorting-options {
+    margin-top: 16px;
+  }
+  
+  .sorting-options button {
+    margin-right: 8px;
+  }
+
+  table{
+    margin-bottom: 2px;
+  }

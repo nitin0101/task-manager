@@ -1,0 +1,18 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.tab {
+  padding: 5px 10px;
+}
+
+.active {
+  border-bottom: 3px solid rgb(64 80 181);
+  color: rgb(64 80 181);
+  font-weight: bolder;
+}
