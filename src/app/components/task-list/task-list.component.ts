@@ -54,7 +54,7 @@ export class TaskListComponent {
   }
 
   ngAfterViewInit(): void {
-    this.paginator.page.subscribe((event: PageEvent) => {
+    this.paginator?.page.subscribe((event: PageEvent) => {
       this.pageIndex = event.pageIndex;
     });
   }
