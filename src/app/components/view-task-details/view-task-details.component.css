@@ -45,3 +45,10 @@ h1{
 .divider{
   margin-bottom: 1rem;
 }
+
+mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+  font-size: 16px;
+  margin-right: 16px;
+  width: 16px;
+  height: 16px;
+}

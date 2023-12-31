@@ -15,9 +15,22 @@
           (cdkDropListDropped)="drop($event)"
         >
           <div class="task" *ngFor="let item of column.tasks" cdkDrag>
-            <h2>{{ item.title }}</h2>
-            <span>{{ item.dueDate }}</span>
-            <span>{{ item.priority }}</span>
+            <p class="card-title">{{ item.title }}</p>
+            <div class="card-info">
+              <div class="due-date">
+                <label for=""
+                  ><mat-icon [style.color]="getCalendarColour(item.dueDate)"
+                    >date_range</mat-icon
+                  ></label
+                >
+                <span>{{ item.dueDate }}</span>
+              </div>
+              <mat-icon
+                [style.color]="getColour(item.priority)"
+                class="mat-icon-flag"
+                >flag</mat-icon
+              >
+            </div>
           </div>
         </div>
       </div>

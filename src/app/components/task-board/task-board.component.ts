@@ -40,18 +40,18 @@ export class TaskBoardComponent {
       name: 'my board',
       columns: [
         {
-          name: 'open',
+          name: 'TO DO',
           color: 'accent',
           id: '101',
           tasks: this.tasks.filter((task) => task.status === 'open'),
         },
         {
-          name: 'in-progress',
+          name: 'IN PROGRESS',
           id: '102',
           tasks: this.tasks.filter((task) => task.status === 'in-progress'),
         },
         {
-          name: 'completed',
+          name: 'DONE',
           id: '103',
           tasks: this.tasks.filter((task) => task.status === 'completed'),
         },
@@ -101,5 +101,13 @@ export class TaskBoardComponent {
         this.commonService.hideSpinner();
       },
     });
+  }
+
+  getColour(priority: string) {
+    return this.commonService.getColour(priority);
+  }
+
+  getCalendarColour(dueDate: string): string {
+    return this.commonService.getCalendarColour(dueDate);
   }
 }
