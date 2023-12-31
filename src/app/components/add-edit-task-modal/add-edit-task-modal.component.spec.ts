@@ -18,7 +18,7 @@ describe('AddEditTaskModalComponent', () => {
       imports: [MatDialogModule, AppModule],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: {close:()=>{}} },
       ],
     }).compileComponents();
 
@@ -28,6 +28,19 @@ describe('AddEditTaskModalComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy()
   });
+
+  it('cancel method should hide dialog',()=>{
+    spyOn(component['dialogRef'],'close');
+    component.cancel()
+    expect(component.dialogRef.close).toHaveBeenCalled()
+  })
+
+
+  it('submit method should close dialog with task details',()=>{
+    spyOn(component['dialogRef'],'close');
+    component.submit()
+    expect(component.dialogRef.close).toHaveBeenCalled()
+  })
 });
