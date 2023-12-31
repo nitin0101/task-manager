@@ -38,4 +38,5 @@ select {
 
   table{
     margin-bottom: 2px;
+    text-transform: capitalize;
   }
