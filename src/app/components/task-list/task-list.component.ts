@@ -54,7 +54,7 @@ export class TaskListComponent {
   }
 
   ngAfterViewInit(): void {
-    this.paginator.page.subscribe((event: PageEvent) => {
+    this.paginator?.page.subscribe((event: PageEvent) => {
       this.pageIndex = event.pageIndex;
     });
   }
@@ -174,5 +174,13 @@ export class TaskListComponent {
         });
       }
     });
+  }
+
+  getColour(priority: string) {
+    return this.commonService.getColour(priority);
+  }
+
+  getCalendarColour(dueDate: string): string {
+    return this.commonService.getCalendarColour(dueDate);
   }
 }

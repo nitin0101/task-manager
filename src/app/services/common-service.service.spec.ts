@@ -1,12 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CommonServiceService } from './common-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { provideMockStore } from '@ngrx/store/testing'
 
 describe('CommonServiceService', () => {
   let service: CommonServiceService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports:[HttpClientModule],
+      providers: [provideMockStore({})],
+    });
     service = TestBed.inject(CommonServiceService);
   });
 
@@ -14,3 +19,4 @@ describe('CommonServiceService', () => {
     expect(service).toBeTruthy();
   });
 });
+

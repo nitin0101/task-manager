@@ -35,12 +35,17 @@
         </select>
       </p>
       <label>DUE DATE</label>
-      <p>{{ task.dueDate }}</p>
+      <p>
+        {{ task.dueDate
+        }}<mat-icon [style.color]="getCalendarColour(task.dueDate)"
+          >date_range</mat-icon
+        >
+      </p>
 
       <label>PRIORITY</label>
 
-      <p>
-        <mat-chip
+      <p class="priority-class">
+        <mat-chip [style.backgroundColor]="getColour(task.priority)" 
           ><img
             matChipAvatar
             src="https://material.angular.io/assets/img/examples/shiba1.jpg"
